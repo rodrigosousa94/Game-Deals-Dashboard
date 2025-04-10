@@ -15,9 +15,10 @@
 <img src="https://github.com/rodrigosousa94/Game-Deals-Dashboard/blob/main/public/modal.png?raw=true" alt="Demonstração do projeto" width="600" />
 <img src="https://github.com/rodrigosousa94/Game-Deals-Dashboard/blob/main/public/cards.png?raw=true" alt="Demonstração do projeto" width="600" />
 
-
-
 ---
+
+## ✨ Acesse no link abaixo
+<a href="https://game-deals-dashboard-five.vercel.app/">Link</a>
 
 ## ✨ Funcionalidades
 
