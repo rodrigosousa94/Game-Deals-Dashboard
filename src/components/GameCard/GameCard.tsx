@@ -18,7 +18,7 @@ interface GameCardProps {
     onFavoriteClick: (id: string) => void;
 }
 
-function GameCard({ game, onClick, onFavoriteClick }: GameCardProps) {
+function GameCard({ game, onFavoriteClick }: GameCardProps) {
     return (
         <div
         className="bg-gray-800 rounded-xl shadow-md p-4 flex flex-col items-center hover:shadow-lg hover:scale-[1.01] transition-all duration-300"
