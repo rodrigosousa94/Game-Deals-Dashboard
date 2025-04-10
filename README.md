@@ -11,7 +11,7 @@
 
 ## 📸 Demonstração
 
-<img src="https://github.com/seu-usuario/game-deals-dashboard/blob/main/public/demo.gif" alt="Demonstração do projeto" />
+<img src="https://github.com/rodrigosousa94/Game-Deals-Dashboard/blob/main/public/tabela.png?raw=true" alt="Demonstração do projeto" />
 
 ---
 
