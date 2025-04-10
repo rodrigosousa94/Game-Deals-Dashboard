@@ -18,7 +18,7 @@
 ---
 
 ## ✨ Acesse no link abaixo
-<a href="https://game-deals-dashboard-five.vercel.app/">Link</a>
+<a target="_blank" href="https://game-deals-dashboard-five.vercel.app/">Link</a>
 
 ## ✨ Funcionalidades
 
