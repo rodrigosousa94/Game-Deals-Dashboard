@@ -19,7 +19,16 @@ interface GameDeal {
   favorite: boolean;
   banner: string;
   link: string;
-  storeName: string
+  storeName: string;
+}
+
+interface Filters {
+  storeID: string;
+  lowerPrice: string;
+  upperPrice: string;
+  minDiscount: string;
+  sortBy: string;
+  searchTerm: string;
 }
 
 function HomePage() {
@@ -28,7 +37,7 @@ function HomePage() {
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<"table" | "card">("table");
   const [visibleCount, setVisibleCount] = useState(8);
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<Filters>({
     storeID: "",
     lowerPrice: "",
     upperPrice: "",
@@ -41,29 +50,23 @@ function HomePage() {
     async function getDeals() {
       try {
         setLoading(true);
-        const data = await fetchDealsWithStores(); // já vem formatado com storeName incluso
-        setGameDeals(data);
+        const data = await fetchDealsWithStores();
+        const savedFavorites = JSON.parse(localStorage.getItem("favoriteGames") || "[]");
+
+        const updatedData = data.map((game: GameDeal) => ({
+          ...game,
+          favorite: savedFavorites.includes(game.id),
+        }));
+
+        setGameDeals(updatedData);
       } catch (error) {
         console.error("Error fetching game deals:", error);
       } finally {
         setLoading(false);
       }
     }
-  
-    getDeals();
-  }, []);
 
-  useEffect(() => {
-    const savedFavorites = localStorage.getItem("favoriteGames");
-    if (savedFavorites) {
-      const favoriteIds = JSON.parse(savedFavorites);
-      setGameDeals((prevDeals) =>
-        prevDeals.map((game) => ({
-          ...game,
-          favorite: favoriteIds.includes(game.id),
-        }))
-      );
-    }
+    getDeals();
   }, []);
 
   function toggleFavorite(id: string) {
@@ -71,37 +74,39 @@ function HomePage() {
       const updatedDeals = prevDeals.map((deal) =>
         deal.id === id ? { ...deal, favorite: !deal.favorite } : deal
       );
+
       const favoriteIds = updatedDeals
         .filter((deal) => deal.favorite)
         .map((deal) => deal.id);
+
       localStorage.setItem("favoriteGames", JSON.stringify(favoriteIds));
+
       return updatedDeals;
     });
   }
 
-  function handleFilterChange(updatedFilters: typeof filters) {
+  function handleFilterChange(updatedFilters: Filters) {
     setFilters(updatedFilters);
   }
 
   const filteredDeals = gameDeals
     .filter((deal) => {
-      const matchesStore = filters.storeID ? deal.store === filters.storeID : true;
       const price = parseFloat(deal.price.replace("$", ""));
       const discount = parseInt(deal.discount.replace("%", ""));
-      const matchesLower = filters.lowerPrice ? price >= Number(filters.lowerPrice) : true;
-      const matchesUpper = filters.upperPrice ? price <= Number(filters.upperPrice) : true;
-      const matchesDiscount = filters.minDiscount ? discount >= Number(filters.minDiscount) : true;
-      const matchesSearch = filters.searchTerm
-        ? deal.title.toLowerCase().includes(filters.searchTerm.toLowerCase())
-        : true;
-      return matchesStore && matchesLower && matchesUpper && matchesDiscount && matchesSearch;
+      return (
+        (!filters.storeID || deal.store === filters.storeID) &&
+        (!filters.lowerPrice || price >= Number(filters.lowerPrice)) &&
+        (!filters.upperPrice || price <= Number(filters.upperPrice)) &&
+        (!filters.minDiscount || discount >= Number(filters.minDiscount)) &&
+        (!filters.searchTerm || deal.title.toLowerCase().includes(filters.searchTerm.toLowerCase()))
+      );
     })
     .sort((a, b) => {
       if (filters.sortBy === "favorite") {
-        return (a.favorite === b.favorite) ? 0 : a.favorite ? -1 : 1;
+        return a.favorite === b.favorite ? 0 : a.favorite ? -1 : 1;
       }
-    
-      const getValue = (deal: typeof a) => {
+
+      const getValue = (deal: GameDeal) => {
         switch (filters.sortBy) {
           case "price":
             return parseFloat(deal.price.replace("$", ""));
@@ -113,39 +118,35 @@ function HomePage() {
             return 0;
         }
       };
-    
+
       return getValue(a) - getValue(b);
     });
-    
 
-  const handleShowMore = () => {
-    setVisibleCount((prev) => prev + 8);
-  };
+  const handleShowMore = () => setVisibleCount((prev) => prev + 8);
 
   return (
     <div className="bg-gray-900 text-white min-h-screen p-6">
       <div className="flex gap-4 justify-center items-center mb-2">
-      <h1 className="text-3xl sm:text-4xl font-extrabold mb-4 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 text-transparent bg-clip-text flex items-center gap-2">
-        <span className="text-white text-4xl">🎮</span>
-        Game Deals Dashboard
-      </h1>
+        <h1 className="text-3xl sm:text-4xl font-extrabold mb-4 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 text-transparent bg-clip-text flex items-center gap-2">
+          <span className="text-white text-4xl">🎮</span>
+          Game Deals Dashboard
+        </h1>
         <button
           onClick={() => setViewMode(viewMode === "table" ? "card" : "table")}
           className="hidden sm:flex bg-purple-500 cursor-pointer text-white px-4 py-2 rounded hover:bg-purple-600 transition items-center gap-2"
         >
           {viewMode === "table" ? <LayoutGrid size={18} /> : <List size={18} />}
-          {viewMode === "table" ? "" : ""}
         </button>
       </div>
 
       <FilterControls onFilterChange={handleFilterChange} />
 
       {loading ? (
-         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-         {Array.from({ length: 8 }).map((_, i) => (
-           <SkeletonCard key={i} />
-         ))}
-       </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <SkeletonCard key={i} />
+          ))}
+        </div>
       ) : viewMode === "table" ? (
         <div className="bg-gray-800 shadow-md rounded-lg p-4">
           <DataTable
@@ -185,6 +186,7 @@ function HomePage() {
           )}
         </>
       )}
+
       <GameModal game={selectedGame} onClose={() => setSelectedGame(null)} />
     </div>
   );
