@@ -173,7 +173,6 @@ function HomePage() {
               >
                 <GameCard
                   game={game}
-                  onClick={() => setSelectedGame(game)}
                   onFavoriteClick={toggleFavorite}
                 />
               </motion.div>
