@@ -14,7 +14,6 @@ interface GameDeal {
 
 interface GameCardProps {
     game: GameDeal;
-    onClick: () => void;
     onFavoriteClick: (id: string) => void;
 }
 
