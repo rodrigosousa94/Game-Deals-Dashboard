@@ -1,54 +1,54 @@
-# React + TypeScript + Vite
+# 🎮 Game Deals Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![License](https://img.shields.io/github/license/seu-usuario/game-deals-dashboard?color=purple)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/seu-usuario/game-deals-dashboard?color=yellow)](https://github.com/seu-usuario/game-deals-dashboard/stargazers)
+[![GitHub Issues](https://img.shields.io/github/issues/seu-usuario/game-deals-dashboard)](https://github.com/seu-usuario/game-deals-dashboard/issues)
+[![Deploy](https://img.shields.io/badge/Live-Demo-purple?style=flat&logo=vercel)](https://seu-link.vercel.app)
 
-Currently, two official plugins are available:
+> Encontre as melhores ofertas de jogos em um dashboard moderno, rápido e responsivo.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📸 Demonstração
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+<img src="https://github.com/seu-usuario/game-deals-dashboard/blob/main/public/demo.gif" alt="Demonstração do projeto" />
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ✨ Funcionalidades
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- 🔍 Filtros por loja e ordenação
+- 📱 Layout 100% responsivo
+- 💾 Favoritar ofertas
+- 🖼️ Modal com detalhes do jogo
+- 💸 Link direto para compra
+- ⭐ UI com animações e transições suaves
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
+
+## 🚀 Tecnologias e Ferramentas
+
+- **React**
+- **TypeScript**
+- **TailwindCSS**
+- **Framer Motion**
+- **CheapShark API**
+- **Vite**
+- **Lucide icons
+
+---
+
+## 📦 Instalação local
+
+```bash
+# Clone o repositório
+git clone https://github.com/rodrigosousa94/game-deals-dashboard.git
+
+# Acesse o diretório
+cd game-deals-dashboard
+
+# Instale as dependências
+npm install
+
+# Inicie o projeto
+npm run dev
