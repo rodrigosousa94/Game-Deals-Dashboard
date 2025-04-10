@@ -105,22 +105,28 @@ function HomePage() {
       if (filters.sortBy === "favorite") {
         return a.favorite === b.favorite ? 0 : a.favorite ? -1 : 1;
       }
-
-      const getValue = (deal: GameDeal) => {
-        switch (filters.sortBy) {
-          case "price":
-            return parseFloat(deal.price.replace("$", ""));
-          case "savings":
-            return parseInt(deal.discount.replace("%", ""));
-          case "dealRating":
-            return parseFloat(deal.dealRating);
-          default:
-            return 0;
-        }
-      };
-
-      return getValue(a) - getValue(b);
-    });
+    
+      const priceA = parseFloat(a.price.replace("$", ""));
+      const priceB = parseFloat(b.price.replace("$", ""));
+      const discountA = parseInt(a.discount.replace("%", ""));
+      const discountB = parseInt(b.discount.replace("%", ""));
+    
+      switch (filters.sortBy) {
+        case "price-asc":
+          return priceA - priceB;
+        case "price-desc":
+          return priceB - priceA;
+        case "savings-asc":
+          return discountA - discountB;
+        case "savings-desc":
+          return discountB - discountA;
+        case "dealRating":
+          return parseFloat(b.dealRating) - parseFloat(a.dealRating);
+        default:
+          return 0;
+      }
+    })
+    
 
   const handleShowMore = () => setVisibleCount((prev) => prev + 8);
 

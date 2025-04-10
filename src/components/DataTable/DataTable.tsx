@@ -77,12 +77,12 @@ function DataTable({ data, onRowClick, onFavoriteClick }: DataTableProps) {
         <table className="min-w-full table-auto text-sm text-left text-gray-300">
           <thead className="bg-gray-700 text-gray-200 uppercase text-xs">
             <tr>
-              <th className="px-4 py-3">Title</th>
-              <th className="px-4 py-3">Store</th>
-              <th className="px-4 py-3">Price</th>
-              <th className="px-4 py-3">Original</th>
-              <th className="px-4 py-3">Discount</th>
-              <th className="px-4 py-3">Rating</th>
+              <th className="px-4 py-3">Título</th>
+              <th className="px-4 py-3">Loja</th>
+              <th className="px-4 py-3">Preço</th>
+              <th className="px-4 py-3">Preço Original</th>
+              <th className="px-4 py-3">Desconto</th>
+              <th className="px-4 py-3">Avaliação</th>
               <th className="px-4 py-3 text-center">Fav</th>
             </tr>
           </thead>
