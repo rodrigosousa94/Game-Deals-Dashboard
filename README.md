@@ -38,7 +38,7 @@
 - **Framer Motion**
 - **CheapShark API**
 - **Vite**
-- **Lucide icons
+- **Lucide icons**
 
 ---
 
