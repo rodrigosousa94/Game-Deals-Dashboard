@@ -124,14 +124,17 @@ function HomePage() {
 
   return (
     <div className="bg-gray-900 text-white min-h-screen p-6">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold mb-6 text-purple-500">Game Deals Dashboard</h1>
+      <div className="flex gap-4 justify-center items-center mb-2">
+      <h1 className="text-3xl sm:text-4xl font-extrabold mb-4 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 text-transparent bg-clip-text flex items-center gap-2">
+        <span className="text-white text-4xl">🎮</span>
+        Game Deals Dashboard
+      </h1>
         <button
           onClick={() => setViewMode(viewMode === "table" ? "card" : "table")}
-          className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition flex items-center gap-2"
+          className="hidden sm:flex bg-purple-500 cursor-pointer text-white px-4 py-2 rounded hover:bg-purple-600 transition items-center gap-2"
         >
-          {viewMode === "table" ? <LayoutGrid size={20} /> : <List size={20} />}
-          {viewMode === "table" ? "Card View" : "Table View"}
+          {viewMode === "table" ? <LayoutGrid size={18} /> : <List size={18} />}
+          {viewMode === "table" ? "" : ""}
         </button>
       </div>
 

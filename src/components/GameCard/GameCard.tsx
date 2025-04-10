@@ -21,8 +21,7 @@ interface GameCardProps {
 function GameCard({ game, onClick, onFavoriteClick }: GameCardProps) {
     return (
         <div
-        onClick={onClick}
-        className="bg-gray-800 rounded-xl shadow-md p-4 flex flex-col items-center hover:shadow-lg hover:scale-[1.01] transition-all duration-300 cursor-pointer"
+        className="bg-gray-800 rounded-xl shadow-md p-4 flex flex-col items-center hover:shadow-lg hover:scale-[1.01] transition-all duration-300"
         >
         <img
             src={game.banner}
