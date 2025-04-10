@@ -3,9 +3,10 @@ import DataTable from "../components/DataTable/DataTable";
 import GameCard from "../components/GameCard/GameCard";
 import GameModal from "../components/Modal/GameModal";
 import FilterControls from "../components/FilterControls/FilterControls";
-import { fetchDeals } from "../services/api";
+import { fetchDealsWithStores } from "../services/api";
 import { motion } from "framer-motion";
 import { List, LayoutGrid } from "lucide-react";
+import SkeletonCard from "../components/SkeletonCard/SkeletonCard";
 
 interface GameDeal {
   id: string;
@@ -18,6 +19,7 @@ interface GameDeal {
   favorite: boolean;
   banner: string;
   link: string;
+  storeName: string
 }
 
 function HomePage() {
@@ -39,30 +41,15 @@ function HomePage() {
     async function getDeals() {
       try {
         setLoading(true);
-        const data = await fetchDeals();
-        console.log(data)
-
-        const formattedDeals = data.map((deal: any) => ({
-          id: deal.dealID,
-          title: deal.title,
-          store: deal.storeID,
-          price: `$${deal.salePrice}`,
-          originalPrice: `$${deal.normalPrice}`,
-          discount: `${Math.round(deal.savings)}%`,
-          dealRating: deal.dealRating,
-          favorite: false,
-          banner: deal.thumb,
-          link: `https://www.cheapshark.com/redirect?dealID=${deal.dealID}`,
-        }));
-
-        setGameDeals(formattedDeals);
+        const data = await fetchDealsWithStores(); // já vem formatado com storeName incluso
+        setGameDeals(data);
       } catch (error) {
         console.error("Error fetching game deals:", error);
       } finally {
         setLoading(false);
       }
     }
-
+  
     getDeals();
   }, []);
 
@@ -151,7 +138,11 @@ function HomePage() {
       <FilterControls onFilterChange={handleFilterChange} />
 
       {loading ? (
-        <p className="text-center text-gray-400">Loading deals...</p>
+         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+         {Array.from({ length: 8 }).map((_, i) => (
+           <SkeletonCard key={i} />
+         ))}
+       </div>
       ) : viewMode === "table" ? (
         <div className="bg-gray-800 shadow-md rounded-lg p-4">
           <DataTable

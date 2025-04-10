@@ -9,6 +9,7 @@ interface GameDeal {
     favorite: boolean;
     banner: string;
     link: string;
+    storeName: string
   }
 
 interface GameCardProps {
@@ -37,7 +38,7 @@ function GameCard({ game, onClick, onFavoriteClick }: GameCardProps) {
         <div className="space-y-1 text-lg text-gray-300 w-full">
             <p>
             <span className="font-medium text-purple-400">🛒 Loja:</span>{" "}
-            <span className="text-white">{game.store}</span>
+            <span className="text-white">{game.storeName}</span>
             </p>
             <p>
             <span className="font-medium text-green-400">💰 Preço:</span>{" "}

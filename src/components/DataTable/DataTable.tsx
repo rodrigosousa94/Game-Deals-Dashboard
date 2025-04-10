@@ -5,6 +5,7 @@ interface GameDeal {
   id: string;
   title: string;
   store: string;
+  storeName: string
   price: string;
   originalPrice: string;
   discount: string;
@@ -52,7 +53,7 @@ function DataTable({ data, onRowClick, onFavoriteClick }: DataTableProps) {
               className="border-b border-gray-600 hover:bg-gray-700 transition cursor-pointer"
             >
               <td className="px-4 py-2">{game.title}</td>
-              <td className="px-4 py-2">{game.store}</td>
+              <td className="px-4 py-2">{game.storeName}</td>
               <td className="px-4 py-2 text-green-400 font-semibold">{game.price}</td>
               <td className="px-4 py-2 line-through text-gray-400">{game.originalPrice}</td>
               <td className="px-4 py-2 text-yellow-400">{game.discount}</td>
