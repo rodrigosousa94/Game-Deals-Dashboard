@@ -1,10 +1,5 @@
 # 🎮 Game Deals Dashboard
 
-[![License](https://img.shields.io/github/license/seu-usuario/game-deals-dashboard?color=purple)](LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/seu-usuario/game-deals-dashboard?color=yellow)](https://github.com/seu-usuario/game-deals-dashboard/stargazers)
-[![GitHub Issues](https://img.shields.io/github/issues/seu-usuario/game-deals-dashboard)](https://github.com/seu-usuario/game-deals-dashboard/issues)
-[![Deploy](https://img.shields.io/badge/Live-Demo-purple?style=flat&logo=vercel)](https://seu-link.vercel.app)
-
 > Encontre as melhores ofertas de jogos em um dashboard moderno, rápido e responsivo.
 
 ---
