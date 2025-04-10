@@ -11,9 +11,10 @@
 
 ## 📸 Demonstração
 
-<img src="https://github.com/rodrigosousa94/Game-Deals-Dashboard/blob/main/public/tabela.png?raw=true" alt="Demonstração do projeto" />
-<img src="https://github.com/rodrigosousa94/Game-Deals-Dashboard/blob/main/public/modal.png?raw=true" alt="Demonstração do projeto" />
-<img src="https://github.com/rodrigosousa94/Game-Deals-Dashboard/blob/main/public/cards.png?raw=true" alt="Demonstração do projeto" />
+<img src="https://github.com/rodrigosousa94/Game-Deals-Dashboard/blob/main/public/tabela.png?raw=true" alt="Demonstração do projeto" width="600" />
+<img src="https://github.com/rodrigosousa94/Game-Deals-Dashboard/blob/main/public/modal.png?raw=true" alt="Demonstração do projeto" width="600" />
+<img src="https://github.com/rodrigosousa94/Game-Deals-Dashboard/blob/main/public/cards.png?raw=true" alt="Demonstração do projeto" width="600" />
+
 
 
 ---
